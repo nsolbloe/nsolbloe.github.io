@@ -29,6 +29,37 @@
             font-size: 18px;
         }
 
+        .dropdown {
+            margin: 10px 0;
+        }
+
+        .dropdown-btn {
+            background: none;
+            border: none;
+            color: #fff;
+            font-size: 18px;
+            text-align: left;
+            width: 100%;
+            padding: 0;
+            cursor: pointer;
+        }
+
+        .dropdown-btn:focus {
+            outline: 2px solid #ffffff55;
+        }
+
+        .dropdown-container {
+            display: none;
+            margin-left: 10px;
+            padding-top: 8px;
+        }
+
+        .dropdown-container a {
+            margin: 8px 0;
+            font-size: 16px;
+            color: #e6f0ff;
+        }
+
         .sidebar a:hover {
             text-decoration: underline;
         }
@@ -58,16 +89,39 @@
 <body>
     <div class="sidebar">
         <a href="#">Home</a>
-        <a href="#">About</a>
-        <a href="#">Services</a>
-        <a href="#">Contact</a>
+
+        <div class="dropdown">
+            <button class="dropdown-btn" aria-expanded="false">About ▾</button>
+            <div class="dropdown-container">
+                <a href="#">Overview</a>
+                <a href="#">Team</a>
+            </div>
+        </div>
+
+        <div class="dropdown">
+            <button class="dropdown-btn" aria-expanded="false">Projects ▾</button>
+            <div class="dropdown-container">
+                <a href="#">Active</a>
+                <a href="#">Archive</a>
+            </div>
+        </div>
     </div>
     <div class="content">
         <div class="header">Website Name</div>
         <div class="greeting">
-            <p>Welcome to our website!</p>
-            <p>We are glad to have you here.</p>
+            <p>Welcome to this website</p>
+            <p></p>
         </div>
     </div>
 </body>
+    <script>
+        document.querySelectorAll('.dropdown-btn').forEach(function(btn){
+            btn.addEventListener('click', function(){
+                var container = btn.nextElementSibling;
+                var isOpen = container.style.display === 'block';
+                container.style.display = isOpen ? 'none' : 'block';
+                btn.setAttribute('aria-expanded', (!isOpen).toString());
+            });
+        });
+    </script>
 </html>
